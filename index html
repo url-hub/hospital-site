@@ -1,3 +1,13 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>病院サイト</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
 <header class="site-header">
   <div class="container">
     <a class="tel-ribbon" href="tel:0270123456">0270-12-3456</a>
@@ -95,3 +105,6 @@
     <small>Copyright (c) 2023 - 2025 あいうえを病院 All Rights Reserved.</small>
   </div>
 </footer>
+
+
+</body></html>
