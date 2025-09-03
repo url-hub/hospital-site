@@ -1,0 +1,97 @@
+<header class="site-header">
+  <div class="container">
+    <a class="tel-ribbon" href="tel:0270123456">0270-12-3456</a>
+    <a class="menu-pill" href="#menu">MENU</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero container">
+    <h2 class="corp">医療法人 ○○会</h2>
+    <h1 class="title">あいうえを病院</h1>
+    <p class="lead">
+      ○○駅から徒歩10分<br>
+      内科・循環器科<br>
+      医療法人 ○○会<br>
+      東京都北区○○二丁目○○-○<br>
+      TEL: <a href="tel:0270123456" class="tel-inline">0270-12-3456</a>
+    </p>
+
+    <figure class="hero-photo">
+      <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1153&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="待合室のイメージ">
+      <figcaption class="hero-caption">
+        病気以外のことも何でもご相談ください。地域の<br>
+        皆様の不安を取り除けるよう努めて参ります。
+      </figcaption>
+    </figure>
+
+    <nav id="menu" class="btn-grid">
+      <a class="btn pill" href="#news">お知らせ</a>
+      <a class="btn pill" href="#hours">診療時間</a>
+      <a class="btn pill" href="#guide">診療案内</a>
+      <a class="btn pill" href="#access">アクセス</a>
+      <a class="btn pill" href="#er">緊急往診</a>
+      <a class="btn pill" href="#evening">準夜診療</a>
+    </nav>
+  </section>
+
+
+            <th></th>
+            <th>月</th>
+            <th>火</th>
+            <th>水</th>
+            <th>木</th>
+            <th>金</th>
+            <th>土</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>9:00-12:00</th>
+            <td>○</td>
+            <td>○</td>
+            <td>○</td>
+            <td>○</td>
+            <td>○</td>
+            <td>○</td>
+          </tr>
+          <tr>
+            <th>15:00-18:00</th>
+            <td>○</td>
+            <td>○</td>
+            <td>－</td>
+            <td>○</td>
+            <td>○</td>
+            <td>－</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+
+  <a href="https://www.google.com/maps?q=36.5350478,139.1859446"
+     target="_blank" rel="noopener">
+    <img
+      src="https://www.dropbox.com/scl/fi/25ow5y2dn06drdc3i1uda/2025-09-01-14-17-30-1.jpg?rlkey=d0vzxetizwvpah3piwf8v14dk&raw=1"
+      alt="アクセス地図"
+      style="width:100%;display:block;border-radius:8px;">
+  </a>
+
+  <p style="text-align:center;margin-top:8px;">
+    👉 <a href="https://www.google.com/maps?q=36.5350478,139.1859446"
+          target="_blank" rel="noopener">Googleマップで開く</a>
+  </p>
+</section>
+
+
+
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <a href="#" class="pagetop">PAGE TOP ↑</a>
+    <small>Copyright (c) 2023 - 2025 あいうえを病院 All Rights Reserved.</small>
+  </div>
+</footer>
