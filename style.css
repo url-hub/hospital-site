@@ -86,3 +86,11 @@ body{
   margin: 0 0 18px;
   line-height: 1.6;
 }
+
+#news { margin: 2rem 0; }
+#news h2 { margin-bottom: 1rem; }
+.news-item { padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 0.75rem; }
+.news-date { font-size: 0.9rem; opacity: 0.7; }
+.news-title { font-weight: 700; margin: 0.25rem 0; }
+.news-body { margin: 0.25rem 0; line-height: 1.6; }
+
