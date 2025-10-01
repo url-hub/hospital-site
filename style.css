@@ -137,3 +137,7 @@ body{
   .btn-grid   { margin-inline: 12px; }
 }
 
+html { scroll-behavior: smooth; }
+section { scroll-margin-top: 16px; }  /* 余白調整 */
+
+
