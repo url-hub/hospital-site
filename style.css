@@ -128,3 +128,12 @@ body{
 .news-title { font-weight: 700; margin: 0.25rem 0; }
 .news-body { margin: 0.25rem 0; line-height: 1.6; }
 
+/* スマホ幅のときに“内側の余白”を作る */
+@media (max-width: 768px) {
+  /* 全体に軽いガターを入れる：電話ボタンも含めて端ピッタリを避ける */
+  .container { padding-inline: 12px; }
+
+  /* さらに画像とメニューボタン群は余白を強めるなら個別指定 */
+  .hero-photo { margin-inline: 12px; }   /* 図全体に左右マージン */
+  .btn-grid   { margin-inline: 12px; }   /* ボタンブロックに左右マージン */
+}
