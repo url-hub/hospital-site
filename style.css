@@ -140,4 +140,13 @@ body{
 html { scroll-behavior: smooth; }
 section { scroll-margin-top: 16px; }  /* 余白調整 */
 
+/* お知らせの見出しの下に余白 */
+#news h2 {
+  margin-bottom: 20px;
+}
+
+/* セクション同士の間隔を広げる */
+section {
+  margin-bottom: 40px;
+}
 
