@@ -145,9 +145,21 @@ section { scroll-margin-top: 16px; }  /* 余白調整 */
   margin-bottom: 20px;
 }
 
-/* セクション同士の間隔を広げる */
-section {
-  margin-bottom: 80px !important;
+/* セクションの区切りをしっかり空ける */
+section { margin-bottom: 80px !important; }
+
+/* section外にある要素にも余白を付ける */
+.hero-photo { 
+  margin: 24px auto 40px;               /* ←ここが効いてなかった箇所 */
+  width: min(92%, var(--container));     /* 横幅も他とそろえると綺麗 */
+  display: block;
 }
+
+/* 真ん中のボタン群にも区切りの余白 */
+.btn-grid { 
+  margin: 24px auto 40px; 
+  width: min(92%, var(--container));
+}
+
 
 
