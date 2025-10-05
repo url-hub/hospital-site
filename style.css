@@ -112,3 +112,18 @@ main > .container{ margin-bottom:var(--block-gap); }  /* hero, お知らせ, 設
 /* スクロール時のアンカー位置補正（見出しが被らない用） */
 html{ scroll-behavior:smooth; }
 section{ scroll-margin-top:16px; }
+
+/* 1) 横はみ出しを一旦封じる（応急） */
+html, body { overflow-x: hidden; }
+
+/* 2) 長い文字列・URLで横に伸びないように */
+.lead, .news-item, .news-body, .desc, .hero-caption {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* 3) テーブルではみ出さない（列幅を自動調整） */
+.hours-table { table-layout: fixed; }
+
+/* 4) ボタン群で横ズレしない（ギャップ＋幅の相性ケア） */
+.btn-grid { max-width: var(--container); width: min(88%, var(--container)); margin-inline: auto; }
