@@ -111,6 +111,8 @@ body{
 .map-frame{ width:100%; aspect-ratio:16/10; margin:12px auto 0; border-radius:4px; overflow:hidden; }
 .map-frame iframe{ width:100%; height:100%; border:0; }
 
+
+
 /* フッター */
 .site-footer{ margin-top:48px; padding:28px 0 40px; background:#f9faf7; color:#496; text-align:center; }
 .pagetop{ display:inline-block; margin-bottom:8px; text-decoration:none; font-weight:800; color:#2e6d45; }
@@ -121,52 +123,43 @@ body{
   line-height: 1.6;
 }
 
-#news { margin-top: 2rem; }
-#news h2 { margin-bottom: 1rem; }
-.news-item { padding: 0.75rem 1rem; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 0.75rem; }
-.news-date { font-size: 0.9rem; opacity: 0.7; }
-.news-title { font-weight: 700; margin: 0.25rem 0; }
-.news-body { margin: 0.25rem 0; line-height: 1.6; }
-
+/* --- ここから下は微調整 --- */
 @media (max-width: 768px) {
-  /* 本文のコンテナだけ余白を付けたい */
   main .container { padding-inline: 12px; }
-
-  /* 画像とボタン群はさらに余白を追加 */
   .hero-photo { margin-inline: 12px; }
   .btn-grid   { margin-inline: 12px; }
 }
+@media (max-width: 560px){
+  .btn-grid{ grid-template-columns: 1fr; }
+}
 
 html { scroll-behavior: smooth; }
-section { scroll-margin-top: 16px; }  /* 余白調整 */
+section { scroll-margin-top: 16px; }
 
-/* ====== ブロック間を必ず広げる・相殺対策付き ====== */
-/* 余白量はここで調整（px でOK） */
+/* ブロック間の間隔 */
 :root { --block-gap: 80px; }
-
-/* <main> 直下の全ブロック（section, nav, figure など）に効かせる */
 main > * {
-  margin: 0 0 var(--block-gap) 0 !important;  /* 下にガツンと余白 */
-  padding-bottom: 1px;                         /* 相殺されにくくする小技 */
-  border-bottom: 1px solid transparent;        /* 相殺防止の安全ピン（見えない） */
+  margin: 0 0 var(--block-gap) 0 !important;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
 }
-
-/* 次のブロックの見出しが margin-top を持っていても相殺されないように0に */
 main h2, main h3 { margin-top: 0; }
 
-+section, nav, figure { margin: 0 auto 80px; }
+/* 幅は .container に統一。下は余白だけ */
+section, nav, figure { margin: 0 auto 80px; }
 
-/* ボタン群にも再度中央寄せと間隔を補強 */
+/* ボタン群の中央寄せを強める */
 .btn-grid {
   width: min(88%, var(--container));
-  margin: 24px auto 80px; /* 余白をしっかり確保 */
+  margin: 24px auto 80px;
 }
 
-/* 画像部分も中央に固定して下を広くとる */
+/* 画像ブロックも中央固定 */
 .hero-photo {
   width: min(88%, var(--container));
   margin: 24px auto 80px;
   display: block;
 }
+
 
 
