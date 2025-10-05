@@ -167,4 +167,8 @@ figure {
   margin-bottom: 80px !important;
 }
 
+main > * {
+  margin-bottom: 80px !important;
+}
+
 
