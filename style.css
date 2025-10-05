@@ -140,43 +140,17 @@ body{
 html { scroll-behavior: smooth; }
 section { scroll-margin-top: 16px; }  /* 余白調整 */
 
-/* お知らせの見出しの下に余白 */
-#news h2 {
-  margin-bottom: 20px;
-}
+/* ====== ブロック間を必ず広げる・相殺対策付き ====== */
+/* 余白量はここで調整（px でOK） */
+:root { --block-gap: 80px; }
 
-
-
-/* section外にある要素にも余白を付ける */
-.hero-photo { 
-  margin: 24px auto 40px;               /* ←ここが効いてなかった箇所 */
-  width: min(92%, var(--container));     /* 横幅も他とそろえると綺麗 */
-  display: block;
-}
-
-/* 真ん中のボタン群にも区切りの余白 */
-.btn-grid { 
-  margin: 24px auto 40px; 
-  width: min(92%, var(--container));
-}
-
-/* 各ブロック（section, nav, figure など）の下にしっかり余白を取る */
-section,
-nav,
-figure {
-  margin-bottom: 80px !important;
-}
-
+/* <main> 直下の全ブロック（section, nav, figure など）に効かせる */
 main > * {
-  margin-bottom: 80px !important;
+  margin: 0 0 var(--block-gap) 0 !important;  /* 下にガツンと余白 */
+  padding-bottom: 1px;                         /* 相殺されにくくする小技 */
+  border-bottom: 1px solid transparent;        /* 相殺防止の安全ピン（見えない） */
 }
 
-/* セクションの下に確実に余白を作る（マージンの相殺防止） */
-section,
-nav,
-figure {
-  margin-bottom: 80px !important;
-  padding-bottom: 80px;         /* ← 下側に内側余白を足す */
-  border-bottom: 1px solid transparent; /* ← 相殺防止のための安全トリック */
-}
+/* 次のブロックの見出しが margin-top を持っていても相殺されないように0に */
+main h2, main h3 { margin-top: 0; }
 
