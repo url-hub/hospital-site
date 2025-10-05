@@ -127,3 +127,17 @@ html, body { overflow-x: hidden; }
 
 /* 4) ボタン群で横ズレしない（ギャップ＋幅の相性ケア） */
 .btn-grid { max-width: var(--container); width: min(88%, var(--container)); margin-inline: auto; }
+
+
+/* 各ブロックの下に必ず余白（相殺対策つき） */
+:root{ --block-gap: 64px; }  /* 好みで 56〜96 に調整OK */
+main > section,
+main > nav{
+  margin-block-end: var(--block-gap) !important;
+  padding-bottom: 1px;                 /* 相殺防止の“当て布” */
+  border-bottom: 1px solid transparent;
+}
+
+/* 次ブロックの見出しの上マージンを無効化（相殺しないように） */
+main h2, main h3{ margin-top: 0; }
+
