@@ -154,13 +154,7 @@ main > * {
 /* 次のブロックの見出しが margin-top を持っていても相殺されないように0に */
 main h2, main h3 { margin-top: 0; }
 
-/* 各ブロック間の余白と中央寄せを確実にする */
-section,
-nav,
-figure {
-  width: min(88%, var(--container));
-  margin: 0 auto 80px;  /* 上下:0, 左右:auto(中央), 下:80px */
-}
++section, nav, figure { margin: 0 auto 80px; }
 
 /* ボタン群にも再度中央寄せと間隔を補強 */
 .btn-grid {
