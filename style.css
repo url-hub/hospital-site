@@ -161,5 +161,18 @@ section, nav, figure { margin: 0 auto 80px; }
   display: block;
 }
 
+/* 中央寄せの補強 */
+.corp { text-align:center; color:var(--green-text); font-weight:700; margin:6px 0 0; }
+#news h2 { text-align:center; }  /* お知らせの見出しも中央 */
+
+/* 表（診療予定表）を中央寄せ */
+.hours-table { margin-inline:auto; }
+
+/* マップ（iframe含む）を中央寄せ */
+.map-frame { margin-inline:auto; }
+
+/* 地図画像リンクタイプにも効かせたい場合 */
+#access a img { display:block; margin-inline:auto; }
+
 
 
