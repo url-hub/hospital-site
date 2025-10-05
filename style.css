@@ -6,35 +6,43 @@
   --menu-shadow:#d58a3a;
   --table-line:#d28a4a;
   --container:960px;
-  --block-gap:64px; /* 各ブロックの下マージン */
+  --block-gap:72px;         /* セクション間の間隔（好みで調整） */
 }
 
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0; }
+html{ scroll-behavior:smooth; }
 body{
   font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
   color:#333; line-height:1.8;
+  overflow-x:hidden;        /* 横はみ出しの白帯防止 */
 }
 
-/* ===== 基本レイアウト（中央寄せ＋左右ちょい余白） ===== */
+/* ================== 基本レイアウト ================== */
 .container{ width:min(88%, var(--container)); margin-inline:auto; }
 
-/* 見出し（共通） */
+/* セクション間の余白は grid の gap で一元管理（相殺しない） */
+main{
+  display:grid;
+  grid-auto-flow:row;
+  row-gap:var(--block-gap);
+}
+section{ scroll-margin-top:16px; }
+
+/* ================== 共通見出し ================== */
 .sec-ttl{
   text-align:center;
   color:var(--green-text);
   font-size:clamp(22px,3.8vw,32px);
-  margin:56px 0 18px;
+  margin:0 0 18px;
   font-weight:800;
 }
 
-/* ===== ヘッダー ===== */
+/* ================== ヘッダー ================== */
 .site-header{ padding:14px 0; }
 .site-header .container{
-  /* ← これが無いと“左寄せ感”が出ます */
   width:min(88%, var(--container));
   margin-inline:auto;
-
   display:flex; align-items:center; justify-content:space-between;
 }
 .tel-ribbon{
@@ -43,32 +51,28 @@ body{
   color:#223; text-decoration:none; font-weight:700; border-radius:4px;
 }
 .tel-ribbon::before{ content:"📞"; margin-right:6px; }
-
 .menu-btn{ display:inline-block; width:30px; height:22px; position:relative; border:none; background:transparent; cursor:pointer; -webkit-appearance:none; appearance:none; padding:0; margin:0; }
 .menu-btn span{ position:absolute; left:0; width:100%; height:4px; background:#5a3e00; border-radius:2px; transition:.3s; }
-.menu-btn span:nth-child(1){ top:0; }
-.menu-btn span:nth-child(2){ top:9px; }
-.menu-btn span:nth-child(3){ top:18px; }
+.menu-btn span:nth-child(1){ top:0; } .menu-btn span:nth-child(2){ top:9px; } .menu-btn span:nth-child(3){ top:18px; }
 
-/* ===== ヒーロー ===== */
+/* ================== ヒーロー ================== */
 .corp{ text-align:center; color:var(--green-text); font-weight:700; margin:6px 0 0; }
 .title{ text-align:center; font-size:clamp(36px,9vw,64px); margin:8px 0 18px; font-weight:800; }
-.lead{ text-align:center; margin:0 0 18px; line-height:1.6; }
+.lead{ text-align:center; margin:0 0 18px; line-height:1.6; overflow-wrap:anywhere; }
 
-.hero-photo{ position:relative; margin:8px 0 26px; } /* containerの中なので幅は自動で中央 */
+.hero-photo{ position:relative; }
 .hero-photo img{ width:100%; display:block; border-radius:4px; }
 .hero-caption{
   position:absolute; left:4%; right:4%; top:10%;
   text-align:center; color:#005599; font-weight:700;
   text-shadow:0 1px 2px rgba(255,255,255,.8), 0 0 6px rgba(0,0,0,.4);
-  line-height:1.6;
+  line-height:1.6; overflow-wrap:anywhere;
 }
 
-/* ===== ボタン ===== */
+/* ================== ボタン群 ================== */
 .btn-grid{
-  /* containerを使わず、ここで中央＋幅制御 */
   width:min(88%, var(--container));
-  margin:0 auto var(--block-gap);
+  margin:0 auto;                    /* 余白は main の gap に任せる */
   display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
   gap:22px 26px;
 }
@@ -78,66 +82,40 @@ body{
   text-decoration:none; font-weight:700;
 }
 
-/* ===== 病院紹介・設備 ===== */
+/* ================== 病院紹介・設備 ================== */
 .accent{ text-align:center; color:#4a7f52; font-size:clamp(20px,3.6vw,28px); margin:8px 0 4px; font-weight:800; }
-.desc{ text-align:center; color:#222; margin:0 0 20px; }
+.desc{ text-align:center; color:#222; margin:0 0 20px; overflow-wrap:anywhere; }
 .equip img{ width:min(780px,100%); display:block; margin:10px auto 0; border-radius:4px; }
 
-/* ===== 診療予定表 ===== */
-.hours-table{ width:100%; border-collapse:collapse; font-size:clamp(14px,3.4vw,16px); margin-top:20px; }
-.hours-table th, .hours-table td{ border:2px solid var(--table-line); padding:10px; text-align:center; }
+/* ================== 診療予定表 ================== */
+/* 横スクロール保険＋中央寄せ */
+.hours-table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.hours-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:clamp(14px,3.4vw,16px);
+  table-layout:fixed;                /* 列幅を安定させる */
+}
+.hours-table th, .hours-table td{ border:2px solid var(--table-line); padding:10px; text-align:center; word-break:break-word; }
+.hours-table thead th:first-child{ width:28%; }  /* 時間列を広めに確保 */
+.hours-table tbody th{ width:28%; white-space:nowrap; } /* “9:00-12:00” のはみ出し対策 */
+@media (max-width:540px){
+  .hours-table th, .hours-table td{ padding:8px 6px; }
+  .hours-table tbody th{ font-size:13px; }
+}
 
-/* ===== アクセス（iframe or 画像リンクどちらでも中央） ===== */
-.map-frame{ width:100%; aspect-ratio:16/10; margin:12px auto 0; border-radius:4px; overflow:hidden; }
+/* ================== アクセス ================== */
+.map-frame{ width:100%; aspect-ratio:16/10; border-radius:4px; overflow:hidden; }
 .map-frame iframe{ width:100%; height:100%; border:0; }
 #access a img{ display:block; margin-inline:auto; border-radius:8px; }
 
-/* ===== フッター ===== */
-.site-footer{ margin-top:48px; padding:28px 0 40px; background:#f9faf7; color:#496; text-align:center; }
+/* ================== フッター ================== */
+.site-footer{ padding:28px 0 40px; background:#f9faf7; color:#496; text-align:center; }
 .pagetop{ display:inline-block; margin-bottom:8px; text-decoration:none; font-weight:800; color:#2e6d45; }
 
-/* ===== セクション下のスペース（ここが“各項目の下に余白”担当） ===== */
-main > .container{ margin-bottom:var(--block-gap); }  /* hero, お知らせ, 設備, 時間, アクセス 等 */
-#menu.btn-grid{ margin-bottom:var(--block-gap); }    /* ボタン群 */
-
-/* ===== スマホ余白（端の当たりを軽減） ===== */
+/* ================== モバイル端の当たり軽減 ================== */
 @media (max-width:768px){
   main .container{ padding-inline:12px; }
   .btn-grid{ padding-inline:12px; }
+  .btn-grid{ grid-template-columns:1fr; }  /* スマホは1列 */
 }
-@media (max-width:560px){
-  .btn-grid{ grid-template-columns:1fr; }
-}
-
-/* スクロール時のアンカー位置補正（見出しが被らない用） */
-html{ scroll-behavior:smooth; }
-section{ scroll-margin-top:16px; }
-
-/* 1) 横はみ出しを一旦封じる（応急） */
-html, body { overflow-x: hidden; }
-
-/* 2) 長い文字列・URLで横に伸びないように */
-.lead, .news-item, .news-body, .desc, .hero-caption {
-  overflow-wrap: anywhere;
-  word-break: break-word;
-}
-
-/* 3) テーブルではみ出さない（列幅を自動調整） */
-.hours-table { table-layout: fixed; }
-
-/* 4) ボタン群で横ズレしない（ギャップ＋幅の相性ケア） */
-.btn-grid { max-width: var(--container); width: min(88%, var(--container)); margin-inline: auto; }
-
-
-/* 各ブロックの下に必ず余白（相殺対策つき） */
-:root{ --block-gap: 64px; }  /* 好みで 56〜96 に調整OK */
-main > section,
-main > nav{
-  margin-block-end: var(--block-gap) !important;
-  padding-bottom: 1px;                 /* 相殺防止の“当て布” */
-  border-bottom: 1px solid transparent;
-}
-
-/* 次ブロックの見出しの上マージンを無効化（相殺しないように） */
-main h2, main h3{ margin-top: 0; }
-
