@@ -70,17 +70,21 @@ section{ scroll-margin-top:16px; }
 }
 
 /* ================== ボタン群 ================== */
-.btn-grid{
-  width:min(88%, var(--container));
-  margin:0 auto;                    /* 余白は main の gap に任せる */
-  display:grid; grid-template-columns:repeat(2, minmax(0,1fr));
-  gap:22px 26px;
+.btn-grid {
+  width: min(88%, var(--container));
+  margin: 0 auto var(--block-gap);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)); /* PCで3列 */
+  gap: 22px 26px;
 }
-.btn.pill{
-  display:block; text-align:center; padding:18px 10px;
-  background:var(--green); border-radius:9999px; color:#445;
-  text-decoration:none; font-weight:700;
+
+/* スマホでは2列 */
+@media (max-width: 560px) {
+  .btn-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
+
 
 /* ================== 病院紹介・設備 ================== */
 .accent{ text-align:center; color:#4a7f52; font-size:clamp(20px,3.6vw,28px); margin:8px 0 4px; font-weight:800; }
