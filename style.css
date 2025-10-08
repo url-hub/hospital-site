@@ -82,7 +82,15 @@ section{ scroll-margin-top:16px; }
 /* 病院紹介・設備 */
 .accent{ text-align:center; color:#4a7f52; font-size:clamp(20px,3.6vw,28px); margin:8px 0 4px; font-weight:800; }
 .desc{ text-align:center; color:#222; margin:0 0 20px; overflow-wrap:anywhere; }
-.equip img{ width:min(780px,100%); margin:10px auto 0; }
+.equip img {
+  width: 110%;         /* ← 拡大（お好みで 105〜120%） */
+  max-width: none;     /* ← コンテナ制限解除 */
+  margin-left: -5%;    /* ← 中央補正（110%なら-5%がちょうど） */
+  display: block;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
 
 /* 診療予定表：時間列を広めに確保＋固定レイアウト */
 .hours-table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
