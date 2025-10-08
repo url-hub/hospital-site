@@ -50,9 +50,9 @@ section{ scroll-margin-top:16px; }
 .lead{ text-align:center; margin:0 0 18px; line-height:1.6; overflow-wrap:anywhere; }
 .hero-photo{ position:relative; }
 .hero-photo img {
-  width: 115%;
+  width: 120%;
   max-width: none;
-  margin-left: -7.5%;
+  margin-left: -10%;
   display: block;
   border-radius: 4px;
 }
