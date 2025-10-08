@@ -1,67 +1,55 @@
+/* ===== 安定版CSS v13（貼り替え用） ===== */
 :root{
   --green:#c7d7a3;
   --green-text:#4a7f52;
   --ribbon:#a8c07a;
-  --menu:#f5c963;
-  --menu-shadow:#d58a3a;
   --table-line:#d28a4a;
   --container:960px;
-  --block-gap:72px;         /* セクション間の間隔（好みで調整） */
+  --gap:72px; /* セクション間 */
 }
 
+/* ベース */
 *{ box-sizing:border-box }
 html,body{ margin:0; padding:0; }
 html{ scroll-behavior:smooth; }
 body{
   font-family:"Hiragino Sans","Noto Sans JP","Yu Gothic",sans-serif;
   color:#333; line-height:1.8;
-  overflow-x:hidden;        /* 横はみ出しの白帯防止 */
+  overflow-x:hidden; /* 白帯防止 */
 }
+img{ max-width:100%; height:auto; display:block; border-radius:4px; }
 
-/* ================== 基本レイアウト ================== */
+/* 幅と中央寄せはここだけ */
 .container{ width:min(88%, var(--container)); margin-inline:auto; }
 
-/* セクション間の余白は grid の gap で一元管理（相殺しない） */
-main{
-  display:grid;
-  grid-auto-flow:row;
-  row-gap:var(--block-gap);
-}
+/* セクション間の余白は gap で管理（相殺しない） */
+main{ display:grid; row-gap:var(--gap); }
 section{ scroll-margin-top:16px; }
 
-/* ================== 共通見出し ================== */
-.sec-ttl{
-  text-align:center;
-  color:var(--green-text);
-  font-size:clamp(22px,3.8vw,32px);
-  margin:0 0 18px;
-  font-weight:800;
-}
+/* 見出し */
+.sec-ttl{ text-align:center; color:var(--green-text);
+  font-size:clamp(22px,3.8vw,32px); margin:0 0 18px; font-weight:800; }
 
-/* ================== ヘッダー ================== */
+/* ヘッダー */
 .site-header{ padding:14px 0; }
 .site-header .container{
-  width:min(88%, var(--container));
-  margin-inline:auto;
   display:flex; align-items:center; justify-content:space-between;
 }
 .tel-ribbon{
-  position:relative; display:inline-block;
-  padding:10px 18px; background:var(--ribbon);
-  color:#223; text-decoration:none; font-weight:700; border-radius:4px;
+  position:relative; display:inline-block; padding:10px 18px;
+  background:var(--ribbon); color:#223; text-decoration:none; font-weight:700; border-radius:4px;
 }
 .tel-ribbon::before{ content:"📞"; margin-right:6px; }
-.menu-btn{ display:inline-block; width:30px; height:22px; position:relative; border:none; background:transparent; cursor:pointer; -webkit-appearance:none; appearance:none; padding:0; margin:0; }
+.menu-btn{ display:inline-block; width:30px; height:22px; position:relative; border:0; background:transparent; padding:0; }
 .menu-btn span{ position:absolute; left:0; width:100%; height:4px; background:#5a3e00; border-radius:2px; transition:.3s; }
 .menu-btn span:nth-child(1){ top:0; } .menu-btn span:nth-child(2){ top:9px; } .menu-btn span:nth-child(3){ top:18px; }
 
-/* ================== ヒーロー ================== */
+/* ヒーロー */
 .corp{ text-align:center; color:var(--green-text); font-weight:700; margin:6px 0 0; }
 .title{ text-align:center; font-size:clamp(36px,9vw,64px); margin:8px 0 18px; font-weight:800; }
 .lead{ text-align:center; margin:0 0 18px; line-height:1.6; overflow-wrap:anywhere; }
-
 .hero-photo{ position:relative; }
-.hero-photo img{ width:100%; display:block; border-radius:4px; }
+.hero-photo img{ width:100%; }
 .hero-caption{
   position:absolute; left:4%; right:4%; top:10%;
   text-align:center; color:#005599; font-weight:700;
@@ -69,57 +57,52 @@ section{ scroll-margin-top:16px; }
   line-height:1.6; overflow-wrap:anywhere;
 }
 
-/* ================== ボタン群 ================== */
-.btn-grid {
-  width: min(88%, var(--container));
-  margin: 0 auto var(--block-gap);
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr)); /* PCで3列 */
-  gap: 22px 26px;
+/* ボタン：PC=3列、スマホ=2列 */
+.btn-grid{
+  width:min(88%, var(--container)); margin:0 auto;
+  display:grid; gap:22px 26px;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+}
+@media (max-width:560px){
+  .btn-grid{ grid-template-columns:repeat(2, minmax(0,1fr)); }
+}
+.btn.pill{
+  display:block; text-align:center; padding:18px 10px;
+  background:var(--green); border-radius:9999px; color:#445;
+  text-decoration:none; font-weight:700;
 }
 
-/* スマホでは2列 */
-@media (max-width: 560px) {
-  .btn-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-
-/* ================== 病院紹介・設備 ================== */
+/* 病院紹介・設備 */
 .accent{ text-align:center; color:#4a7f52; font-size:clamp(20px,3.6vw,28px); margin:8px 0 4px; font-weight:800; }
 .desc{ text-align:center; color:#222; margin:0 0 20px; overflow-wrap:anywhere; }
-.equip img{ width:min(780px,100%); display:block; margin:10px auto 0; border-radius:4px; }
+.equip img{ width:min(780px,100%); margin:10px auto 0; }
 
-/* ================== 診療予定表 ================== */
-/* 横スクロール保険＋中央寄せ */
+/* 診療予定表：時間列を広めに確保＋固定レイアウト */
 .hours-table-wrap{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
 .hours-table{
-  width:100%;
-  border-collapse:collapse;
+  width:100%; border-collapse:collapse; table-layout:fixed;
   font-size:clamp(14px,3.4vw,16px);
-  table-layout:fixed;                /* 列幅を安定させる */
 }
-.hours-table th, .hours-table td{ border:2px solid var(--table-line); padding:10px; text-align:center; word-break:break-word; }
-.hours-table thead th:first-child{ width:28%; }  /* 時間列を広めに確保 */
-.hours-table tbody th{ width:28%; white-space:nowrap; } /* “9:00-12:00” のはみ出し対策 */
+.hours-table th, .hours-table td{
+  border:2px solid var(--table-line); padding:10px; text-align:center; word-break:break-word;
+}
+.hours-table thead th:first-child,
+.hours-table tbody th{ width:10.5em; white-space:nowrap; } /* 9:00-12:00 収める */
 @media (max-width:540px){
   .hours-table th, .hours-table td{ padding:8px 6px; }
-  .hours-table tbody th{ font-size:13px; }
 }
 
-/* ================== アクセス ================== */
+/* アクセス（画像リンクでもOK） */
 .map-frame{ width:100%; aspect-ratio:16/10; border-radius:4px; overflow:hidden; }
 .map-frame iframe{ width:100%; height:100%; border:0; }
 #access a img{ display:block; margin-inline:auto; border-radius:8px; }
 
-/* ================== フッター ================== */
+/* フッター */
 .site-footer{ padding:28px 0 40px; background:#f9faf7; color:#496; text-align:center; }
 .pagetop{ display:inline-block; margin-bottom:8px; text-decoration:none; font-weight:800; color:#2e6d45; }
 
-/* ================== モバイル端の当たり軽減 ================== */
+/* モバイルの端当たり軽減（左右インナー余白） */
 @media (max-width:768px){
   main .container{ padding-inline:12px; }
   .btn-grid{ padding-inline:12px; }
-  .btn-grid{ grid-template-columns:1fr; }  /* スマホは1列 */
 }
