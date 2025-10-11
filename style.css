@@ -125,7 +125,7 @@ section{ scroll-margin-top:16px; }
 /* 各セクションの本文（pや画像など）の下に余白を入れて、
    次のタイトル（h2）までしっかりスペースを作る */
 section > *:last-child {
-  margin-bottom: 80px;
+  margin-bottom: 160px;
 }
 
 
