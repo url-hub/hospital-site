@@ -129,9 +129,7 @@ section > *:last-child {
   margin-bottom: 60px;
 }
 
-.site-header {
-  padding-bottom: 40px; /* ←ヘッダー下に余白 */
-}
+
 
 /* ヒーロー画像だけ下げる */
 .hero-photo { margin-top: 24px; }
