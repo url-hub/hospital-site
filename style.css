@@ -48,7 +48,8 @@ section{ scroll-margin-top:16px; }
 .corp{ text-align:center; color:var(--green-text); font-weight:700; margin:6px 0 0; }
 .title{ text-align:center; font-size:clamp(36px,9vw,64px); margin:8px 0 18px; font-weight:800; }
 .lead{ text-align:center; margin:0 0 18px; line-height:1.6; overflow-wrap:anywhere; }
-.hero-photo{ position:relative; }
+.hero-photo{ position:relative;margin-top: 40px; /* ←タイトルとの距離を追加 */
+} }
 .hero-photo img {
   width: 120%;
   max-width: none;
@@ -64,10 +65,8 @@ section{ scroll-margin-top:16px; }
   line-height:1.6; overflow-wrap:anywhere;
 }
 
-.hero-photo {
-  position: relative;
-  margin-top: 32px; /* ←タイトルとの距離を追加 */
-}
+
+  
 
 
 /* ボタン：PC=3列、スマホ=2列 */
