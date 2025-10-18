@@ -51,9 +51,9 @@ section{ scroll-margin-top:16px; }
 .hero-photo{ position:relative;margin-top: 100px; /* ←タイトルとの距離を追加 */
 } }
 .hero-photo img {
-  width: 120%;
+  width: 140%;
   max-width: none;
-  margin-left: -10%;
+  margin-left: -20%;
   display: block;
   border-radius: 4px;
 }
