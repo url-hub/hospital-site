@@ -133,11 +133,7 @@ section > *:last-child {
   margin-bottom: 60px;
 }
 
-/* ヒーロー画像の拡大調整（上書き） */
-.hero-photo img {
-  width: 130%;     /* ←ここを変えたい大きさに */
-  margin-left: -15%;  /* ←中央補正 */
-}
+
 
 
 
