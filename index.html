@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
-<head>
+<header id="top" class="site-header">
   <meta charset="UTF-8">
   <title>病院サイト</title>
   <link rel="stylesheet" href="style.css?v=20">
@@ -49,25 +49,26 @@
   </div>
 </header>
 
-<!-- モバイルメニュー / Overlay -->
 <nav class="mobile-menu" aria-hidden="true" id="mobileMenu">
-  <ul class="mobile-menu__list" role="menu">
+  <!-- 先に置く＝下のレイヤーになる -->
+  <button type="button" class="mobile-menu__backdrop" aria-label="メニューを閉じる"></button>
+
+  <!-- 右上の縦並びパネル -->
+  <ul class="mobile-menu__panel" role="menu">
     <li><a role="menuitem" href="#top">トップ</a></li>
     <li><a role="menuitem" href="#guide">病院紹介</a></li>
     <li><a role="menuitem" href="#hours">診療時間</a></li>
     <li><a role="menuitem" href="#equip">設備の紹介</a></li>
     <li><a role="menuitem" href="#access">アクセス</a></li>
 
-    <!-- まだ未公開：押せない＋見た目グレー -->
+    <!-- 準備中：押せない -->
     <li><a role="menuitem" class="is-disabled" aria-disabled="true" tabindex="-1">ワクチン接種（準備中）</a></li>
     <li><a role="menuitem" class="is-disabled" aria-disabled="true" tabindex="-1">生活習慣病外来（準備中）</a></li>
 
     <li><button type="button" class="mobile-menu__close" aria-label="メニューを閉じる">閉じる</button></li>
   </ul>
-
-  <!-- 背景をタップしても閉じる -->
-  <button type="button" class="mobile-menu__backdrop" aria-label="メニューを閉じる"></button>
 </nav>
+
 
   
 <main>
