@@ -49,6 +49,27 @@
   </div>
 </header>
 
+<!-- モバイルメニュー / Overlay -->
+<nav class="mobile-menu" aria-hidden="true" id="mobileMenu">
+  <ul class="mobile-menu__list" role="menu">
+    <li><a role="menuitem" href="#top">トップ</a></li>
+    <li><a role="menuitem" href="#guide">病院紹介</a></li>
+    <li><a role="menuitem" href="#hours">診療時間</a></li>
+    <li><a role="menuitem" href="#equip">設備の紹介</a></li>
+    <li><a role="menuitem" href="#access">アクセス</a></li>
+
+    <!-- まだ未公開：押せない＋見た目グレー -->
+    <li><a role="menuitem" class="is-disabled" aria-disabled="true" tabindex="-1">ワクチン接種（準備中）</a></li>
+    <li><a role="menuitem" class="is-disabled" aria-disabled="true" tabindex="-1">生活習慣病外来（準備中）</a></li>
+
+    <li><button type="button" class="mobile-menu__close" aria-label="メニューを閉じる">閉じる</button></li>
+  </ul>
+
+  <!-- 背景をタップしても閉じる -->
+  <button type="button" class="mobile-menu__backdrop" aria-label="メニューを閉じる"></button>
+</nav>
+
+  
 <main>
   <section class="hero container">
     <h2 class="corp">医療法人 ○○会</h2>
@@ -63,8 +84,7 @@
 　　　<figure class="hero-photo">
        <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1153&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="待合室の写真">
        <figcaption class="hero-caption">
-         病気以外のことも何でもご相談ください。<br>
-         地域の皆様の不安を取り除けるよう努めて参ります。
+         病気以外のことも何でもご相談ください。地域の皆様の不安を取り除けるよう努めて参ります。
        </figcaption>
      </figure>
     
@@ -238,6 +258,44 @@
 })();
 </script>
 
+<script>
+(() => {
+  const btn = document.querySelector('.menu-btn');        // 右上バーガー
+  const menu = document.getElementById('mobileMenu');
+  const closeBtn = menu.querySelector('.mobile-menu__close');
+  const backdrop = menu.querySelector('.mobile-menu__backdrop');
+  const links = menu.querySelectorAll('a[role="menuitem"]:not(.is-disabled)');
+
+  function openMenu(){
+    document.body.classList.add('menu-open');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+  }
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    btn.focus();
+  }
+
+  // 開閉
+  btn.addEventListener('click', openMenu);
+  closeBtn.addEventListener('click', closeMenu);
+  backdrop.addEventListener('click', closeMenu);
+
+  // メニュー内リンク押下で閉じる（スムーススクロールは既にCSSで有効）
+  links.forEach(a => a.addEventListener('click', closeMenu));
+
+  // Escキーで閉じる
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) closeMenu();
+  });
+
+  // ARIA属性（初期値）
+  btn.setAttribute('aria-controls','mobileMenu');
+  btn.setAttribute('aria-expanded','false');
+})();
+</script>
 
   
 
