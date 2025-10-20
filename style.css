@@ -133,78 +133,69 @@ section > *:last-child {
   margin-bottom: 60px;
 }
 
-/* ===== モバイル・フルスクリーンメニュー ===== */
-.mobile-menu {
+/* ===== モバイル・右上の縦並びメニュー ===== */
+.mobile-menu{
   position: fixed;
   inset: 0;
   z-index: 9999;
-  display: none;                 /* 初期は非表示 */
+  display: none;                 /* 初期非表示 */
 }
-body.menu-open .mobile-menu {    /* 開いたときだけ表示 */
-  display: block;
-}
+body.menu-open .mobile-menu{ display: block; }
 
-.mobile-menu__backdrop {
+/* 背景（外側タップで閉じる）— 下の層 */
+.mobile-menu__backdrop{
   position: absolute; inset: 0;
-  background: rgba(0,0,0,.35);
+  background: rgba(0,0,0,.25);
   border: 0;
-  width: 100%; height: 100%;
 }
 
-.mobile-menu__list {
-  position: absolute; inset: auto 0 0 0;     /* 下からスライド */
-  background: #fff;
-  padding: 16px;
-  margin: 0;
+/* 右上のパネル — 上の層 */
+.mobile-menu__panel{
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: min(86vw, 320px);
+  max-height: calc(100vh - 20px);
+  overflow: auto;
+
+  margin: 0; padding: 12px;
   list-style: none;
-  border-radius: 16px 16px 0 0;
-  box-shadow: 0 -8px 24px rgba(0,0,0,.15);
-  transform: translateY(100%);
-  transition: transform .3s ease;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.18);
 }
-body.menu-open .mobile-menu__list { transform: translateY(0); }
 
-.mobile-menu__list li { margin: 6px 0; }
-.mobile-menu__list a,
-.mobile-menu__list .mobile-menu__close {
-  display: block;
-  width: 100%;
-  text-align: center;
-  font-weight: 700;
+/* 項目の見た目 */
+.mobile-menu__panel li{ margin: 6px 0; }
+.mobile-menu__panel a,
+.mobile-menu__panel .mobile-menu__close{
+  display: block; width: 100%;
+  text-align: center; font-weight: 700;
   text-decoration: none;
-  padding: 14px 12px;
+  padding: 12px 10px;
   border-radius: 9999px;
   border: 2px solid var(--green-text);
-  color: var(--green-text);
-  background: #fff;
+  color: var(--green-text); background: #fff;
 }
 
-.mobile-menu__list a:active { opacity: .8; }
-
-/* 閉じるボタンは色反転 */
-.mobile-menu__close {
+/* 閉じるは色反転 */
+.mobile-menu__panel .mobile-menu__close{
   background: var(--green-text);
-  color: #fff;
-  border-color: var(--green-text);
+  color: #fff; border-color: var(--green-text);
   cursor: pointer;
 }
 
-/* 未公開リンクの見た目（押せない） */
-.mobile-menu__list a.is-disabled {
-  color: #888;
-  border-color: #ddd;
-  cursor: not-allowed;
-  pointer-events: none; /* クリック不可 */
+/* 準備中リンク（押せない） */
+.mobile-menu__panel a.is-disabled{
+  color: #888; border-color: #ddd;
+  pointer-events: none; cursor: not-allowed;
 }
 
-/* モバイルだけ表示（PCでは無効） */
+/* PCでは表示しない */
 @media (min-width: 769px){
-  .mobile-menu { display: none !important; }
+  .mobile-menu{ display: none !important; }
 }
 
-/* メニュー開時はスクロールロック */
-body.menu-open { overflow: hidden; }
-
-
-
+/* 開いてる間はスクロール止める */
+body.menu-open{ overflow: hidden; }
 
