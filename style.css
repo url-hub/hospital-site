@@ -156,9 +156,6 @@ section > *:last-child {
 
 
 
-/* 枠線が薄く感じたら少しだけ強調（任意） */
-.hours-table th, .hours-table td{
-  border-color: var(--table-line);
-}
+
 
 
