@@ -133,5 +133,42 @@ section > *:last-child {
   margin-bottom: 60px;
 }
 
+/* ===== 診療予定表 色付け（淡い肌色） ===== */
+:root{
+  --peach: #fff4ec;     /* 見出し・時間帯の背景 */
+  --peach-2: #ffe9dc;   /* ちょい強め */
+  --weekend: #fff0f0;   /* 土日用の薄い色（任意） */
+  --head-text: #553;    /* 見出し文字色（コントラスト確保） */
+}
+
+/* 曜日ヘッダ */
+.hours-table thead th{
+  background: var(--peach);
+  color: var(--head-text);
+  font-weight: 800;
+}
+
+/* 時間帯（左端の列） */
+.hours-table tbody th{
+  background: var(--peach);
+  color: var(--head-text);
+  font-weight: 700;
+}
+
+/* （任意）土曜・日曜だけ薄くトーン変更：列番号に注意！
+   1=時間, 2=月, 3=火, 4=水, 5=木, 6=金, 7=土, 8=日 */
+.hours-table thead th:nth-child(7),
+.hours-table tbody td:nth-child(7){
+  background: var(--weekend);
+}
+.hours-table thead th:nth-child(8),
+.hours-table tbody td:nth-child(8){
+  background: var(--weekend);
+}
+
+/* 枠線が薄く感じたら少しだけ強調（任意） */
+.hours-table th, .hours-table td{
+  border-color: var(--table-line);
+}
 
 
