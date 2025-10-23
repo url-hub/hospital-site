@@ -49,6 +49,20 @@
   </div>
 </header>
 
+<!-- モバイルメニュー -->
+<nav id="mobileMenu" class="mobile-menu" aria-hidden="true">
+  <div class="mobile-menu__backdrop"></div>
+  <div class="mobile-menu__panel">
+    <ul>
+      <li><a href="#top" role="menuitem">トップ</a></li>
+      <li><a href="#guide" role="menuitem">病院紹介</a></li>
+      <li><a href="#hours" role="menuitem">診療時間</a></li>
+      <li><a href="#equip" role="menuitem">設備の紹介</a></li>
+      <li><a href="#access" role="menuitem">アクセス</a></li>
+      <li><button class="mobile-menu__close">閉じる ✕</button></li>
+    </ul>
+  </div>
+</nav>
 
 
 
@@ -71,7 +85,7 @@
        </figcaption>
      </figure>
     
-　</section>
+  </section>
     
     
 
@@ -103,7 +117,7 @@
     <!-- 画像はお好みのURLに差し替え可 -->
     <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="院長の写真">
   </figure>
-</section>
+ </section>
 
   
   <section id="equip" class="container features">
@@ -132,7 +146,7 @@
             <th>木</th>
             <th>金</th>
             <th>土</th>
-　　　　　　　　<th>日</th>
+            <th>日</th>
           </tr>
         </thead>
         <tbody>
@@ -179,7 +193,7 @@
     👉 <a href="https://www.google.com/maps?q=36.5350478,139.1859446"
           target="_blank" rel="noopener">Googleマップで開く</a>
   </p>
-</section>
+  </section>
 
 
 
@@ -241,6 +255,41 @@
 })();
 </script>
 
+<script>
+(() => {
+  const btn = document.querySelector('.menu-btn');        // 右上バーガー
+  const menu = document.getElementById('mobileMenu');
+  if (!btn || !menu) return; // 安全ガード
+
+  const closeBtn = menu.querySelector('.mobile-menu__close');
+  const backdrop = menu.querySelector('.mobile-menu__backdrop');
+  const links = menu.querySelectorAll('a[role="menuitem"]:not(.is-disabled)');
+
+  function openMenu(){
+    document.body.classList.add('menu-open');
+    menu.setAttribute('aria-hidden','false');
+    btn.setAttribute('aria-expanded','true');
+  }
+  function closeMenu(){
+    document.body.classList.remove('menu-open');
+    menu.setAttribute('aria-hidden','true');
+    btn.setAttribute('aria-expanded','false');
+    btn.focus();
+  }
+
+  btn.addEventListener('click', openMenu);
+  closeBtn?.addEventListener('click', closeMenu);
+  backdrop?.addEventListener('click', closeMenu);
+  links.forEach(a => a.addEventListener('click', closeMenu));
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('menu-open')) closeMenu();
+  });
+
+  btn.setAttribute('aria-controls','mobileMenu');
+  btn.setAttribute('aria-expanded','false');
+})();
+</script>
 
   
 
