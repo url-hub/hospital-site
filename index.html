@@ -91,10 +91,45 @@
 
 <section id="news" class="container">
   <h2>お知らせ</h2>
-  <iframe
-    src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQVhK2WdTHtG7FK1TSeM_n6TaopqHxP0Gfk4rCMwM3n9Z-eOW2C2sQHxxMETlIr7k_8XoZ5mWGfARMp/pubhtml?gid=0&single=true&widget=true&headers=false"
-    width="100%" height="420" frameborder="0"></iframe>
+  <div id="news-cards" class="news-cards"></div>
+  <p id="news-fallback" style="display:none;">お知らせはまだありません。</p>
 </section>
+
+<script>
+  // あなたの公開URLのID（そのまま）
+  const PUB_E_ID = '2PACX-1vQVhK2WdTHtG7FK1TSeM_n6TaopqHxP0Gfk4rCMwM3n9Z-eOW2C2sQHxxMETlIr7k_8XoZ5mWGfARMp';
+  const GID = '0'; // タブが違うならそのgidに変更
+
+  const tq = encodeURIComponent("select A,B,C,D where A='公開' order by B desc limit 20");
+  const url = `https://docs.google.com/spreadsheets/d/e/${PUB_E_ID}/gviz/tq?tqx=out:json&gid=${GID}&tq=${tq}`;
+
+  const excelDateToJSDate = n => new Date((n - 25569) * 86400 * 1000);
+
+  fetch(url)
+    .then(r => r.text())
+    .then(txt => {
+      const json = JSON.parse(txt.substring(47, txt.length - 2));
+      const rows = (json.table.rows || []).map(r => r.c.map(c => c ? c.v : ''));
+
+      const wrap = document.getElementById('news-cards');
+      if (!rows.length) { document.getElementById('news-fallback').style.display = 'block'; return; }
+
+      wrap.innerHTML = rows.map(cols => {
+        let dateVal = cols[1];
+        let d = (typeof dateVal === 'number') ? excelDateToJSDate(dateVal) : new Date(dateVal);
+        let y = d.getFullYear(), m = (d.getMonth()+1+'').padStart(2,'0'), dd = (d.getDate()+'' ).padStart(2,'0');
+        let dateStr = isNaN(y) ? (dateVal || '') : `${y}/${m}/${dd}`;
+        const title = (cols[2] || '').toString();
+        const body  = (cols[3] || '').toString().replace(/\n/g,'<br>');
+        return `<article class="news-card">
+                  <div class="news-date">${dateStr}</div>
+                  <h3 class="news-title">${title}</h3>
+                  <div class="news-body">${body}</div>
+                </article>`;
+      }).join('');
+    })
+    .catch(() => { document.getElementById('news-fallback').style.display = 'block'; });
+</script>
 
 
 
