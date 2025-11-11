@@ -218,53 +218,7 @@
   </div>
 </footer>
 
-<script>
-(async () => {
-  // ← CSVの直リンクに差し替え（最後の &cache= だけ残せばキャッシュ防止になります）
-  const CSV_URL = "https://docs.google.com/spreadsheets/d/SPREADSHEET_ID/export?format=csv&id=SPREADSHEET_ID&gid=GID&cache=" + Date.now();
 
-  function parseCSV(text) {
-    // 超シンプルCSVパーサ（カンマを含む場合はシート側で「セル内改行」にする運用でOK）
-    return text.trim().split("\n").map(row => row.split(","));
-  }
-
-  try {
-    const res = await fetch(CSV_URL);
-    if (!res.ok) throw new Error("fetch error");
-    const csv = await res.text();
-    const rows = parseCSV(csv);
-
-    // 1行目はヘッダー: 日付 | タイトル | 本文 | リンク
-    const data = rows.slice(1).filter(r => r.length >= 3);
-
-    if (!data.length) {
-      document.getElementById("news-list").textContent = "お知らせはありません。";
-      return;
-    }
-
-    // 日付で新しい順に並べ替え（YYYY/MM/DD か YYYY-MM-DD を想定）
-    data.sort((a,b) => new Date(b[0]) - new Date(a[0]));
-
-    const html = data.map(([date, title, body, link]) => {
-      const maybeLink = (link && link.trim()) ? `<div><a href="${link.trim()}" target="_blank" rel="noopener">詳しくはこちら</a></div>` : "";
-      return `
-        <article class="news-item">
-          <div class="news-date">${date || ""}</div>
-          <div class="news-title">${title || ""}</div>
-          <div class="news-body">${(body || "").replaceAll("\\n","<br>")}</div>
-          ${maybeLink}
-        </article>
-      `;
-    }).join("");
-
-    document.getElementById("news-list").innerHTML = html;
-
-  } catch (e) {
-    console.error(e);
-    document.getElementById("news-list").textContent = "お知らせの読み込みに失敗しました。";
-  }
-})();
-</script>
 
 <script>
 (() => {
