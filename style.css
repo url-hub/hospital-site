@@ -189,7 +189,7 @@ iframe { max-width: 100%; border-radius: 4px; }
     content:"";
     position: fixed;
     top:0; bottom:0;
-    width:12px;                           /* ← レールの太さ */
+    width:40px;                           /* ← レールの太さ */
     background: var(--ribbon);            /* ← 色（お好みで変更OK） */
     opacity:0.8;
     pointer-events:none;
@@ -197,8 +197,8 @@ iframe { max-width: 100%; border-radius: 4px; }
   }
 
   /* コンテナの外側に配置（中央基準） */
-  body::before{ left:  calc(50% - (min(84%, var(--container)) / 2) - 20px); }
-  body::after { right: calc(50% - (min(84%, var(--container)) / 2) - 20px); }
+  body::before{ left:  calc(50% - (min(72%, var(--container)) / 2) - 40px); }
+  body::after { right: calc(50% - (min(72%, var(--container)) / 2) - 40px); }
 
   /* コンテンツがレールの上にくるように */
   body > *{ position: relative; z-index:1; }
