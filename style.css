@@ -249,3 +249,38 @@ html{ font-size: var(--fs-body); }
   }
 }
 
+
+/* === A. 文字サイズを安全に戻す（スマホもPCも） === */
+@media (max-width: 560px){
+  html{ font-size:16px !important; }           /* 最低16pxを確保 */
+  .title{ font-size: clamp(32px, 9vw, 44px) !important; }
+  .lead, .desc{ font-size: 1rem !important; } /* 読みやすく */
+}
+@media (min-width: 1024px){
+  html{ font-size:17px !important; }           /* PCで小さすぎ回避 */
+}
+
+/* === B. “うっすら四角”を消す（レールと干渉してた演出を解除） === */
+@media (min-width: 1024px){
+  body{ background:#fff !important; }          /* 背景グレー→白に戻す */
+  .site-header > .container,
+  main > .container,
+  .main-menu .btn-grid,
+  .site-footer > .container{
+    box-shadow:none !important;
+    border-radius:0 !important;
+    padding-inline:0 !important;
+    background:transparent !important;
+  }
+  /* 必要ならヘッダー/フッターだけ軽い影を残す（任意） */
+  .site-header{ box-shadow:0 2px 12px rgba(0,0,0,.04); }
+  .site-footer{ box-shadow:0 -2px 12px rgba(0,0,0,.04); }
+}
+
+/* === C. ヒーロー写真が大きすぎないよう最終ガード === */
+.hero-photo{ margin-top: clamp(24px, 4vw, 48px) !important; }
+.hero-photo img{
+  width:100% !important; max-width:100% !important; margin-left:0 !important;
+  height:auto; aspect-ratio:16/9; object-fit:cover; max-height:60vh;
+}
+
