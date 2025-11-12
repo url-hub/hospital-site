@@ -184,7 +184,9 @@ iframe { max-width: 100%; border-radius: 4px; }
 /* === PCの基準幅（好きな値に調整可） === */
 @media (min-width: 769px){
   :root{
-    --pc-content: 72%; /* ← もっと狭くしたければ 68% や 65% に */
+    --pc-content: 70%; /* ← もっと狭くしたければ 68% や 65% に */
+    --rail-gap: 32px;   /* ← レールと本文の隙間（増減で調整） */
+  
   }
 
   /* レール（太く・はっきり） */
