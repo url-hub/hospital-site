@@ -186,6 +186,7 @@ iframe { max-width: 100%; border-radius: 4px; }
   :root{
     --pc-content: 70%; /* ← もっと狭くしたければ 68% や 65% に */
     --rail-gap: 32px;   /* ← レールと本文の隙間（増減で調整） */
+    --pc-gutter: 20px;   /* ★ コンテナ内側の余白（インナーガター） */
   
   }
 
