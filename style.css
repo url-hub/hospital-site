@@ -181,4 +181,30 @@ iframe { max-width: 100%; border-radius: 4px; }
 @media (max-width:768px){.news-card{padding:14px 16px}.news-body{-webkit-line-clamp:8}}
 
 
+/* ===== デスクトップ専用：左右レール＋コンテナ幅調整 ===== */
+@media (min-width: 769px){
+  /* レール表示 */
+  body::before,
+  body::after{
+    content:"";
+    position: fixed;
+    top:0; bottom:0;
+    width:12px;                           /* ← レールの太さ */
+    background: var(--ribbon);            /* ← 色（お好みで変更OK） */
+    opacity:0.8;
+    pointer-events:none;
+    z-index:0;
+  }
+
+  /* コンテナの外側に配置（中央基準） */
+  body::before{ left:  calc(50% - (min(84%, var(--container)) / 2) - 20px); }
+  body::after { right: calc(50% - (min(84%, var(--container)) / 2) - 20px); }
+
+  /* コンテンツがレールの上にくるように */
+  body > *{ position: relative; z-index:1; }
+
+  /* コンテナを少し狭める（スマホよりやや中央寄せ） */
+  .container{ width:min(84%, var(--container)); }
+}
+
 
